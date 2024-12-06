@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Login</h1>
+    <h3>{{error}}</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <fieldset class="control-group">
+                <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                <div class="controls">
+                    <input
+                    type="{{ field.field.widget.input_type }}"
+                    class="form-control"
+                    id="{{ field.id_for_label }}"
+                    name="{{field.name}}"
+                    required
+                    />
+                    <p class="help-text">{{ field.help_text }} </p>
+                </div>
+            </fieldset>
+            {% endfor %}
+        <input type="submit"  class="btn btn-primary" value="Login">
+    </form>
+{% endblock %}
